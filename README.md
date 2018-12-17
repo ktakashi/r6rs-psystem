@@ -46,3 +46,37 @@ It also provides commonly used C function bindings.
   A binding for `free`. The given argument must be a pointer
   which is allocated by the `psystem:malloc` or other `malloc` on the
   same libc.
+
+Supported implementations
+=========================
+
+Currently the following implemnetations are supported.
+
+- Sagittarius Scheme (0.9.4 or later)
+- Chez Scheme (v9.5)
+- Larceny (1.3)
+
+If the implemnetation supports [SRFI 112](https://srfi.schemers.org/srfi-112/),
+then it would work without modification.
+
+How to add implementations
+==========================
+
+Currently, the only implementation dependent part is `(psystem os)` library.
+If your implementation doesn't support SRFI 112, then add a file under the
+`lib/psystem/` with name of `os.${implementation}.sls` which is de-fact
+standard to dispatch library of R6RS implementations, and impelemnt the
+variable described above section.
+
+For example, if you want to add `SuperScheme` which can only be run on
+Linux machine then the file would look like this:
+
+The file name: `os.superscheme.sls`
+The content:
+```scheme
+(library (psystem os)
+    (export *psystem:os-name*)
+	(import (rnrs))
+(define *psystem:os-name* 'Linux)
+)
+```
