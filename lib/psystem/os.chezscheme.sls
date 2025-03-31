@@ -37,7 +37,7 @@
 (define *psystem:os-name*
   (case (machine-type)
     ((i3le ti3le a6le ta6le) 'Linux)
-    ((i3osx ti3osx a6osx ta6osx) 'Darwin)
+    ((i3osx ti3osx a6osx ta6osx tarm64osx) 'Darwin)
     ((i3nt ti3nt a6nt ta6nt) 'Windows)
     ((i3fb a6fb ti3fb ta6fb) 'FreeBSD)
     ((i3ob a6ob ti3ob ta6ob) 'OpenBSD)
